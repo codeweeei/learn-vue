@@ -7,7 +7,10 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <span class="a">123</span>
+    <span class="b">456</span>
+  </div>
   <script src="dist/vue.js"></script>
   <script>
     const vm = new Vue({
@@ -15,13 +18,10 @@
       data() {
         return {
           name: '123',
-          a: {
-            a: 124
-          }
+          a: [1,2,3]
         }
       }
     })
-    vm._data.a = {b:1}
     console.log(vm)
   </script>
 </body>
