@@ -1,12 +1,12 @@
 import { initMixin } from './init';
+import { lifecycleMixin } from './lifecycle';
+import { renderMixin } from './render';
 
 function Vue(options) {
-	// const vm = this;
-	// vm.$options = options;
-	// init(vm);
-	// return vm;
 	this._init(options);
 }
-initMixin(Vue);
+initMixin(Vue); // _init
+renderMixin(Vue); // _render
+lifecycleMixin(Vue); // _update
 
 export default Vue;

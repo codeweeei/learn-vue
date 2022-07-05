@@ -1,5 +1,6 @@
 import { initState } from './state';
 import { compilerToFunction } from './compiler/index';
+import { mountComponent } from './lifecycle';
 
 // 初始化vue
 export function initMixin(Vue) {
@@ -21,6 +22,7 @@ export function initMixin(Vue) {
 		const vm = this;
 		const options = vm.$options;
 		el = document.querySelector(el);
+		vm.$el = el;
 		// 将模板转换为渲染函数（render），用于创建虚拟节点，增加渲染模板的性能
 		if (!options.render) {
 			// 用户没有传入render函数时使用template模板
@@ -33,5 +35,7 @@ export function initMixin(Vue) {
 				options.render = render;
 			}
 		}
+		// 将vm组件挂载在el上
+		mountComponent(vm, el);
 	};
 }
