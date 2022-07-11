@@ -7,20 +7,34 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="app" style="color:red;background:blue">hello{{name}}world</div>
+  <div id="app">{{name}}</div>
   <script src="dist/vue.js"></script>
   <script>
     const vm = new Vue({
       el: '#app',
       data() {
         return {
-          name: {
-            a:'123'
-          },
+          name: '123'
         }
+      },
+      watch: {
+        name(newVal,oldVal) {
+          console.log(newVal, oldVal)
+        },
+        name:[
+          function (newVal, oldVal) {
+            console.log(newVal, oldVal)
+          },
+          function (a, b) {
+            console.log(a, b)
+          },
+        ]
       }
     })
-    console.log(vm)
+    vm.$watch('name', function(newValue) {
+      console.log(newValue)
+    })
+    vm.name = '456'
   </script>
 </body>
 </html>
